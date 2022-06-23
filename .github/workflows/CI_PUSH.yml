@@ -17,4 +17,4 @@ jobs:
     - name: Adding Known Hosts
       run: ssh-keyscan -H ${{ secrets.SSH_IP_DIGITALOCEAN }} >> ~/.ssh/known_hosts
     - name: executing remote ssh commands using ssh key
-      run: cd /var/www/rawpotatochip.com/public && git checkout
+      run: ssh github@{{ secrets.SSH_IP_DIGITALOCEAN }} "cd /var/www/rawpotatochip.com/public && git checkout main
