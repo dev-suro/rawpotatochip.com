@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  Deploy-Action:
+    name: CI-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_IP_DIGITALOCEAN}}
+        username: faye
+        key: ${{ secrets.SSH_KEY }}
+        port: 22
+        script: cd /var/www/rawpotatochip.com/public && git checkout
