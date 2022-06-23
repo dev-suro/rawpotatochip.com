@@ -9,12 +9,12 @@ jobs:
     name: CI-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@v0.1.4
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
       with:
-        host: ${{ secrets.SSH_IP_DIGITALOCEAN }}
-        username: github
-        key: ${{ secrets.PRIVKEY }}
-        port: 22
-        script: cd /var/www/rawpotatochip.com/public && git checkout
-        debug: true
+        key: ${{ secrets.PRIVKEY }} 
+        known_hosts: 'github-host'
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.SSH_IP_DIGITALOCEAN }} >> ~/.ssh/known_hosts
+    - name: executing remote ssh commands using ssh key
+      run: cd /var/www/rawpotatochip.com/public && git checkout
