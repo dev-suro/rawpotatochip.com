@@ -13,7 +13,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_IP_DIGITALOCEAN}}
-        username: faye
+        username: github
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: cd /var/www/rawpotatochip.com/public && git checkout
