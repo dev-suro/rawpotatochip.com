@@ -17,3 +17,4 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: 22
         script: cd /var/www/rawpotatochip.com/public && git checkout
+        debug: true
