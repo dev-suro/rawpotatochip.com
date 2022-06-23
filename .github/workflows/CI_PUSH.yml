@@ -18,15 +18,3 @@ jobs:
       run: ssh-keyscan -H ${{ secrets.SSH_IP_DIGITALOCEAN }} >> ~/.ssh/known_hosts
     - name: executing remote ssh commands using ssh key
       run: ssh github@{{ secrets.SSH_IP_DIGITALOCEAN }} "cd /var/www/rawpotatochip.com/public && git checkout main"
-
-
-
-
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ${{ secrets.SSH_IP_DIGITALOCEAN }}
-        username: github
-        key: ${{ secrets.PRIVKEY }}
-        port: 22
-        script: cd /var/www/rawpotatochip.com/public && git checkout
-        debug: true
